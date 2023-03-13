@@ -4,14 +4,21 @@ spring:
   application:
     name: api-movie-server
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/movie-dev
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      auto-commit: true
+    url: jdbc:mysql://localhost:3307/movie-dev?createDatabaseIfNotExist=true&useUnicode=true&amp&characterEncoding=utf-8&autoReconnect=true
     username: usr-movie
     password: pwd-movie
   jpa:
-    hibernate.ddl-auto: update
-    generate-ddl: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
     show-sql: true
+    database: mysql
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
 eureka:
   client:
     service-url:
